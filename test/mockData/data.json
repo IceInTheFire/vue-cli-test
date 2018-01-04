@@ -1,0 +1,87 @@
+{
+  "model": {
+    "dataList": [
+      {
+        "uid": "3",
+        "uname": "asd"
+      },
+      {
+        "uid": "9",
+        "uname": "lz"
+      },
+      {
+        "uid": "10",
+        "uname": "%"
+      },
+      {
+        "uid": "11",
+        "uname": "冰中焱"
+      },
+      {
+        "uid": "20",
+        "uname": "思绪错乱"
+      },
+      {
+        "uid": "21",
+        "uname": "一叶先生"
+      },
+      {
+        "uid": "22",
+        "uname": "俞先生"
+      },
+      {
+        "uid": "23",
+        "uname": "龚小姐"
+      },
+      {
+        "uid": "24",
+        "uname": "张三"
+      },
+      {
+        "uid": "25",
+        "uname": "李四"
+      },
+      {
+        "uid": "26",
+        "uname": "王五"
+      },
+      {
+        "uid": "27",
+        "uname": "小六"
+      },
+      {
+        "uid": "28",
+        "uname": "luckly day "
+      },
+      {
+        "uid": "29",
+        "uname": "第五安"
+      },
+      {
+        "uid": "30",
+        "uname": "陈先生"
+      },
+      {
+        "uid": "31",
+        "uname": "黄小姐"
+      },
+      {
+        "uid": "32",
+        "uname": "骆小姐"
+      },
+      {
+        "uid": "33",
+        "uname": "朱先生"
+      },
+      {
+        "uid": "34",
+        "uname": "孔子"
+      }
+    ],
+    "total": "19",
+    "totalPage": "1",
+    "page": "1"
+  },
+  "code": "success",
+  "message": "查询成功"
+}
