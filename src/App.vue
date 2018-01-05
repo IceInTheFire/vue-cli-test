@@ -1,8 +1,18 @@
 <template>
   <div id="app">
-    <transition :name="transitionName">
+    <!--<transition :name="transitionName">-->
     <!--<transition name="slide-right">-->
-      <router-view class="router"></router-view>
+      <!--<keep-alive>-->
+        <!--<router-view class="router"></router-view>-->
+      <!--</keep-alive>-->
+
+      <!--<keep-alive v-if="$route.meta && $route.meta.keepAlive">   -->
+      <!--不能像上面这样设置v-if 因为会清除之前keep-alive过的数据-->
+    <keep-alive>
+      <router-view class="router" v-if="$route.meta && $route.meta.keepAlive"></router-view>
+    </keep-alive>
+    <transition :name="transitionName"><!--不能包含两个router-view-->
+      <router-view class="router" v-if="!$route.meta || !$route.meta.keepAlive"></router-view>
     </transition>
     <loading v-model="isLoading"></loading>
   </div>
@@ -39,26 +49,12 @@ export default {
 //      const toDepth = to.path.split('/').length
 //      const fromDepth = from.path.split('/').length
 //      this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
-//      scroll.setScroll(this, this.scrollConfig, this.postshow)
       this.transitionName = this.transitionName === 'slide-left' ? 'slide-right' : 'slide-left'
-      this.scrollTop = this.$store.state.scrollTop[to.path.split('/')[1]]
-      console.log(this.$store)
-      console.log(this.scrollTop)
-      console.log('看看是多少')
-      if (this.scrollTop) {
-        console.log(this.scrollTop)
-      } else {
-        console.log('有延迟啊')
-      }
-      if (document.documentElement && document.documentElement.scrollTop) {
-        document.documentElement.scrollTop = this.scrollTop || 0
-      } else if (document.body) {
-        document.body.scrollTop = this.scrollTop || 0
-      }
-      if (to.path === '/echarts') {
+//      if (to.path === '/echarts' || (to.path === '/http' && this.$store.state.scrollTop[to.path.split('/')[1]])) {
+      if (to.path === '/echarts' || to.path === '/http' || from.path === '/http') {
         this.transitionName = 'none'
       }
-      if (this.first) {
+      if (this.first) {   // 第一次加载不需要动画
         console.log('true')
         this.transitionName = 'none'
         this.first = false

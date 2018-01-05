@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-// import HelloWorld from '@/components/HelloWorld'
-// import HelloWorld from '@/components/HelloWorld'
-const HelloWorld = r => require.ensure([], () => r(require('@/components/HelloWorld.vue')), 'chunkname2')
-const HelloFromVux = r => require.ensure([], () => r(require('@/components/HelloFromVux.vue')), 'chunkname3')
-const echarts = r => require.ensure([], () => r(require('@/components/echarts.vue')), 'chunknam4')
-const http = r => require.ensure([], () => r(require('@/components/http.vue')), 'chunkname5')
-const transition = r => require.ensure([], () => r(require('@/components/transition.vue')), 'chunkname6')
-// import HelloFromVux from '@/components/HelloFromVux'
+// import HelloWorld from '@/page/HelloWorld'
+// import HelloWorld from '@/page/HelloWorld'
+const HelloWorld = r => require.ensure([], () => r(require('@/page/HelloWorld.vue')), 'chunkname2')
+const HelloFromVux = r => require.ensure([], () => r(require('@/page/HelloFromVux.vue')), 'chunkname3')
+const echarts = r => require.ensure([], () => r(require('@/page/echarts.vue')), 'chunknam4')
+const http = r => require.ensure([], () => r(require('@/page/http.vue')), 'chunkname5')
+const transition = r => require.ensure([], () => r(require('@/page/transition.vue')), 'chunkname6')
+// import HelloFromVux from '@/page/HelloFromVux'
 
 Vue.use(Router)
 
@@ -38,6 +38,9 @@ export default new Router({
     {
       path: '/http',
       name: 'http',
+      meta: {
+        keepAlive: true
+      },
       component: http
     },
     {

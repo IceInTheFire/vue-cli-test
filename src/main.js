@@ -8,7 +8,7 @@ import App from './App'
 import router from './router/index.js'
 // import axios from 'axios'
 import axios from './http/config.js'
-
+import components from './components/'  // 加载公共组件
 import Vuex from 'vuex'
 import storeInfo from './store/'
 import wx from 'weixin-js-sdk'
@@ -24,7 +24,12 @@ Vue.prototype.$http = axios
 
 FastClick.attach(document.body)
 
-Vue.config.productionTip = false
+// Vue.config.productionTip = false
+
+Object.keys(components).forEach((key) => {
+  var name = key.replace(/(\w)/, (v) => v.toUpperCase())  // 首字母大写
+  Vue.component(`h${name}`, components[key])
+})
 
 Vue.use(Vuex)
 

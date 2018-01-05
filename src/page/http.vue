@@ -7,6 +7,7 @@
       <span class="title right">UID：</span>
       <span>{{data.uid}}</span>
     </div>
+    <h-pull-down-load :load="load"></h-pull-down-load>
     <router-link to="/">首页</router-link>
   </div>
 </template>
@@ -14,7 +15,7 @@
   .list{
     font-size:14px;
     height: 4rem;
-    line-height: 2rem;
+    line-height: 4rem;
     .title{
       color:#4B4B4B;
       &.right{
@@ -31,27 +32,34 @@
     data () {
       return {
         list: [],
+        page: 1,
+        load: {
+          loading: false,
+          noMore: false
+        },
         scrollConfig: {
           title: 'http',
           backTop: false
-        },
-        page: 1,
-        loading: false,
-        end: false
+        }
       }
     },
     created () {
 
     },
     mounted () {
-      this.scrollConfig.title = this.$route.path.split('/')[1]
       this.postshow()
     },
     components: {},
     beforeDestroy () {
-      scroll.closeScroll()
+
     },
     destroyed () {
+    },
+    activated () {
+      scroll.setScroll(this, this.scrollConfig, this.postshow)
+    },
+    deactivated () {
+      scroll.closeScroll()
     },
     methods: {
       getshow () {
@@ -66,16 +74,16 @@
         })
       },
       postshow () {
-        if (this.loading || this.end) {
+        if (this.load.loading || this.load.noMore) {
           return
         }
-        this.loading = true
+        this.load.loading = true
         this.$http.post(api.conn, {
           page: this.page,
           limit: 10
         }).then((res) => {
           if (res.page >= res.totalPage) {
-            this.end = true
+            this.load.noMore = true
           }
           res.dataList.forEach((value) => {
             this.list.push(value)
@@ -84,11 +92,13 @@
             scroll.setScroll(this, this.scrollConfig, this.postshow)
           }
           this.page ++
-          this.loading = false
+          this.load.loading = false
         }, (error) => {
           console.log('error2', error)
+          this.load.loading = false
         }).catch((catch2) => {
           console.log('catch2', catch2)
+          this.load.loading = false
         })
       }
     }
