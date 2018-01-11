@@ -4,6 +4,7 @@ const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 const vuxLoader = require('vux-loader')
+const webpack = require('webpack')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -32,16 +33,18 @@ let webpackConfig = {
   },
   module: {
     rules: [
-      ...(config.dev.useEslint? [{
-        test: /\.(js|vue)$/,
-        loader: 'eslint-loader',
-        enforce: 'pre',
-        include: [resolve('src'), resolve('test')],
-        options: {
-          formatter: require('eslint-friendly-formatter'),
-          emitWarning: !config.dev.showEslintErrorsInOverlay
-        }
-      }] : []),
+      ...(config.dev.useEslint? [
+      //   {
+      //   test: /\.(js|vue)$/,
+      //   loader: 'eslint-loader',
+      //   enforce: 'pre',
+      //   include: [resolve('src'), resolve('test')],
+      //   options: {
+      //     formatter: require('eslint-friendly-formatter'),
+      //     emitWarning: !config.dev.showEslintErrorsInOverlay
+      //   }
+      // }
+      ] : []),
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -77,7 +80,14 @@ let webpackConfig = {
         }
       }
     ]
-  }
+  },
+  // // 增加一个plugins  为了使用第三方插件
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery"
+    })
+  ],
 }
 
 

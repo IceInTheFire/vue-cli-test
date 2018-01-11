@@ -8,6 +8,8 @@ const HelloFromVux = r => require.ensure([], () => r(require('@/page/HelloFromVu
 const echarts = r => require.ensure([], () => r(require('@/page/echarts.vue')), 'chunknam4')
 const http = r => require.ensure([], () => r(require('@/page/http.vue')), 'chunkname5')
 const transition = r => require.ensure([], () => r(require('@/page/transition.vue')), 'chunkname6')
+// const lib = r => require.ensure([], () => r(require('@/page/lib.vue')), 'chunkname7')
+const border = r => require.ensure([], () => r(require('@/page/border.vue')), 'chunkname8')
 // import HelloFromVux from '@/page/HelloFromVux'
 
 Vue.use(Router)
@@ -48,6 +50,16 @@ export default new Router({
       name: 'transition',
       component: transition
     },
+    {
+      path: '/border',
+      name: 'border',
+      component: border
+    },
+    // {
+    //   path: '/lib',
+    //   name: 'lib',
+    //   component: lib
+    // },
     {
       path: '*',
       redirect: '/HelloWorld'

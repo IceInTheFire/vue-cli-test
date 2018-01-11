@@ -16,8 +16,11 @@
   "dependencies": {
     "animate.css": "^3.5.2",
     "axios": "^0.17.1",
+    "bootstrap": "^3.3.7",
+    "bootstrap-datetimepicker": "0.0.7",
     "echarts": "^3.8.5",
     "fastclick": "^1.0.6",
+    "jquery": "^3.2.1",
     "qs": "^6.5.1",
     "vue": "^2.5.2",
     "vue-infinite-scroll": "^2.0.2",
